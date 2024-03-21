@@ -1,12 +1,13 @@
 #!/bin/ash
 rm -rf /home/container/tmp/*
 
-if [[ -d .git ]] && [[ $AUTO_UPDATE == "1" ]]; then
-  cd /home/container/webroot
-  echo "⟳ Pulling Git..."
-  git fetch --all; git reset --hard origin/master;
-  echo "✓ Successfully synced git"
-fi
+# I will fix l8r tm
+# if [[ -d .git ]] && [[ $AUTO_UPDATE == "1" ]]; then
+cd /home/container/webroot
+echo "⟳ Pulling Git..."
+git fetch --all; git reset --hard origin/master;
+echo "✓ Successfully synced git"
+# fi
 
 echo "⟳ Starting PHP-FPM..."
 /usr/sbin/php-fpm8 --fpm-config /home/container/php-fpm/php-fpm.conf --daemonize
