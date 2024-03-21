@@ -1,11 +1,11 @@
 #!/bin/ash
 rm -rf /home/container/tmp/*
 
-if [[ -d .git ]] && [[ 1 == "1" ]]; then
-cd /home/container/webroot
-echo "⟳ Pulling Git..."
-git fetch --all; git reset --hard origin/master;
-echo "✓ Successfully synced git"
+if [[ -d .git ]] && [[ $AUTO_UPDATE == "1" ]]; then
+  cd /home/container/webroot
+  echo "⟳ Pulling Git..."
+  git fetch --all; git reset --hard origin/master;
+  echo "✓ Successfully synced git"
 fi
 
 echo "⟳ Starting PHP-FPM..."
