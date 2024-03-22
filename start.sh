@@ -1,7 +1,14 @@
 #!/bin/ash
+cd /home/container
 rm -rf /home/container/tmp/*
 
+echo "$SERVER_IP:$SERVER_PORT"
+
 cd /home/container/webroot
+if [ ! -z ${COMPOSER_MODULES} ]; then 
+  composer require ${COMPOSER_MODULES} --working-dir=/home/container/webroot; 
+fi;
+
 if [ -d .git ] && [ "${AUTO_UPDATE}" == "1" ]; then
   echo "⟳ Pulling Git..."
   git fetch --all; git reset --hard origin/${BRANCH};
@@ -15,3 +22,4 @@ echo "⟳ Starting PHP-FPM..."
 echo "⟳ Starting Nginx..."
 echo "✓ Successfully started"
 /usr/sbin/nginx -c /home/container/nginx/nginx.conf -p /home/container/
+
