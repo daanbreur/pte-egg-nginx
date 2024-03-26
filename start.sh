@@ -1,4 +1,4 @@
-#!/bin/ash
+#!/bin/bash
 cd /home/container
 rm -rf /home/container/tmp/*
 
